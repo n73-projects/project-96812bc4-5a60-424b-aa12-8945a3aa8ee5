@@ -158,14 +158,14 @@ function App() {
   const maxHeight = array.length > 0 ? Math.max(...array.map(item => item.value)) : 300;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-4">
+    <div className="min-h-screen bg-gray-900 py-8 px-4">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <h1 className="text-4xl font-bold text-white mb-2">
             Bubble Sort Visualizer
           </h1>
-          <p className="text-gray-600 text-lg">
+          <p className="text-gray-300 text-lg">
             Watch how Bubble Sort compares and swaps elements step by step
           </p>
         </div>
@@ -192,17 +192,17 @@ function App() {
         {/* Algorithm Info */}
         {currentStep >= 0 && sortSteps.length > 0 && (
           <div className="text-center mb-8">
-            <div className="bg-white rounded-lg p-4 shadow-sm inline-block">
-              <p className="text-sm text-gray-600">
+            <div className="bg-gray-800 border border-gray-700 rounded-lg p-4 shadow-lg inline-block">
+              <p className="text-sm text-gray-300">
                 Step {currentStep + 1} of {sortSteps.length}
               </p>
               {sortSteps[currentStep].comparing && (
-                <p className="text-sm text-blue-600 font-medium">
+                <p className="text-sm text-yellow-400 font-medium">
                   Comparing elements at positions {sortSteps[currentStep].comparing![0]} and {sortSteps[currentStep].comparing![1]}
                 </p>
               )}
               {sortSteps[currentStep].swapping && (
-                <p className="text-sm text-red-600 font-medium">
+                <p className="text-sm text-red-400 font-medium">
                   Swapping elements at positions {sortSteps[currentStep].swapping![0]} and {sortSteps[currentStep].swapping![1]}
                 </p>
               )}
@@ -211,11 +211,11 @@ function App() {
         )}
 
         {/* Visualization */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
+        <div className="bg-gray-800 border border-gray-700 rounded-xl shadow-xl p-8 mb-8">
           <div className="flex items-end justify-center gap-1 h-80">
             {array.map((item, index) => {
               const height = (item.value / maxHeight) * 280;
-              let bgColor = "bg-blue-500";
+              let bgColor = "bg-blue-600";
               
               if (item.isSorted) {
                 bgColor = "bg-green-500";
@@ -228,8 +228,8 @@ function App() {
               return (
                 <div key={`${item.id}-${index}`} className="flex flex-col items-center gap-2">
                   <div
-                    className={`${bgColor} rounded-t-md transition-all duration-300 ease-in-out flex items-end justify-center pb-2 ${
-                      item.isSwapping ? "scale-110 shadow-lg" : ""
+                    className={`${bgColor} rounded-t-md transition-all duration-300 ease-in-out flex items-end justify-center pb-2 shadow-lg ${
+                      item.isSwapping ? "scale-110 shadow-2xl" : ""
                     }`}
                     style={{
                       height: `${height}px`,
@@ -241,7 +241,7 @@ function App() {
                       {item.value}
                     </span>
                   </div>
-                  <span className="text-xs text-gray-500">{index}</span>
+                  <span className="text-xs text-gray-400">{index}</span>
                 </div>
               );
             })}
@@ -249,41 +249,41 @@ function App() {
         </div>
 
         {/* Legend */}
-        <div className="bg-white rounded-lg p-6 shadow-sm">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">Legend</h3>
+        <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 shadow-lg">
+          <h3 className="text-lg font-semibold text-white mb-4">Legend</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-blue-500 rounded"></div>
-              <span className="text-sm text-gray-700">Unsorted</span>
+              <div className="w-4 h-4 bg-blue-600 rounded shadow-sm"></div>
+              <span className="text-sm text-gray-300">Unsorted</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-yellow-500 rounded"></div>
-              <span className="text-sm text-gray-700">Comparing</span>
+              <div className="w-4 h-4 bg-yellow-500 rounded shadow-sm"></div>
+              <span className="text-sm text-gray-300">Comparing</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-red-500 rounded"></div>
-              <span className="text-sm text-gray-700">Swapping</span>
+              <div className="w-4 h-4 bg-red-500 rounded shadow-sm"></div>
+              <span className="text-sm text-gray-300">Swapping</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-4 h-4 bg-green-500 rounded"></div>
-              <span className="text-sm text-gray-700">Sorted</span>
+              <div className="w-4 h-4 bg-green-500 rounded shadow-sm"></div>
+              <span className="text-sm text-gray-300">Sorted</span>
             </div>
           </div>
         </div>
 
         {/* Algorithm Explanation */}
-        <div className="bg-white rounded-lg p-6 shadow-sm mt-8">
-          <h3 className="text-lg font-semibold text-gray-900 mb-4">How Bubble Sort Works</h3>
-          <div className="text-gray-700 space-y-2">
-            <p>1. <strong>Compare</strong> adjacent elements in the array</p>
-            <p>2. <strong>Swap</strong> them if they are in the wrong order (left {'>'} right)</p>
-            <p>3. <strong>Repeat</strong> for each pair of adjacent elements</p>
+        <div className="bg-gray-800 border border-gray-700 rounded-lg p-6 shadow-lg mt-8">
+          <h3 className="text-lg font-semibold text-white mb-4">How Bubble Sort Works</h3>
+          <div className="text-gray-300 space-y-2">
+            <p>1. <strong className="text-white">Compare</strong> adjacent elements in the array</p>
+            <p>2. <strong className="text-white">Swap</strong> them if they are in the wrong order (left {'>'} right)</p>
+            <p>3. <strong className="text-white">Repeat</strong> for each pair of adjacent elements</p>
             <p>4. After each complete pass, the largest element "bubbles" to its correct position</p>
-            <p>5. <strong>Continue</strong> until no more swaps are needed</p>
+            <p>5. <strong className="text-white">Continue</strong> until no more swaps are needed</p>
           </div>
-          <div className="mt-4 p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-600">
-              <strong>Time Complexity:</strong> O(n²) {' | '} <strong>Space Complexity:</strong> O(1)
+          <div className="mt-4 p-4 bg-gray-900 border border-gray-600 rounded-lg">
+            <p className="text-sm text-gray-400">
+              <strong className="text-gray-200">Time Complexity:</strong> O(n²) {' | '} <strong className="text-gray-200">Space Complexity:</strong> O(1)
             </p>
           </div>
         </div>
